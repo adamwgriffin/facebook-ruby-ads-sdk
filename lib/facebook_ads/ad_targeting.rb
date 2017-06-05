@@ -16,7 +16,7 @@ module FacebookAds
     NOT_INSTALLED      = 'not_installed'
     APP_INSTALL_STATES = [INSTALLED, NOT_INSTALLED].freeze
 
-    attr_accessor :genders, :age_min, :age_max, :countries, :user_os, :user_device, :app_install_state, :custom_locations, :income
+    attr_accessor :genders, :age_min, :age_max, :countries, :user_os, :user_device, :app_install_state, :custom_locations
 
     def initialize
       # self.genders = [WOMEN] # If nil, defaults to all genders.
@@ -26,6 +26,16 @@ module FacebookAds
       # self.user_device = ANDROID_DEVICES
       # self.app_install_state = NOT_INSTALLED
       self.income = [] # An a rray of objects with 'id' and optional 'name'
+    end
+
+    def geo_locations
+      if custom_locations
+        { custom_locations: custom_locations }
+      elsif countries
+        { countries: countries }
+      else
+        { countries: ['US'] }
+      end
     end
 
     def geo_locations
