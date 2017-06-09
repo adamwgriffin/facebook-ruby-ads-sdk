@@ -83,19 +83,20 @@ module FacebookAds
       AdCreative.paginate("/#{id}/adcreatives", query: { limit: limit })
     end
 
-    def create_ad_creative(creative, creative_type: nil, carousel: false)
-      # Support old deprecated carousel param
-      return create_carousel_ad_creative(creative) if carousel
-      case creative_type
-      when 'carousel'
+    def create_ad_creative(creative, creative_type: nil)
+      if creative_type == "carousel"
         create_carousel_ad_creative(creative)
-      when 'link'
+      elsif creative_type == "link"
         create_link_ad_creative(creative)
-      when 'image'
-        create_image_ad_creative(creative)
       else
         create_image_ad_creative(creative)
       end
+    end
+
+    # has_many ad_sets
+
+    def ad_sets(effective_status: ['ACTIVE'], limit: 100)
+      AdSet.paginate("/#{id}/adsets", query: { effective_status: effective_status, limit: limit })
     end
 
     # AdAudience
@@ -209,7 +210,7 @@ module FacebookAds
     end
 
     def create_link_ad_creative(creative)
-      required = %i[name title body object_url link_url image_hash page_id]
+      required = %i[name title body object_url link_url image_hash]
 
       unless (keys = required - creative.keys).length.zero?
         raise Exception, "Creative is missing the following: #{keys.join(', ')}"
