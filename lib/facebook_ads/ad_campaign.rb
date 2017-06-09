@@ -59,7 +59,7 @@ module FacebookAds
       AdSet.paginate("/#{id}/adsets", query: { effective_status: effective_status, limit: limit })
     end
 
-    def create_ad_set(name:, promoted_object: {}, targeting:, daily_budget:, optimization_goal:, billing_event: 'IMPRESSIONS', status: 'ACTIVE', is_autobid: true)
+    def create_ad_set(name:, promoted_object: {}, targeting:, daily_budget: nil, lifetime_budget: nil, end_time: nil, optimization_goal:, billing_event: 'IMPRESSIONS', status: 'ACTIVE', is_autobid: true)
       raise Exception, "Optimization goal must be one of: #{AdSet::OPTIMIZATION_GOALS.join(', ')}" unless AdSet::OPTIMIZATION_GOALS.include?(optimization_goal)
       raise Exception, "Billing event must be one of: #{AdSet::BILLING_EVENTS.join(', ')}" unless AdSet::BILLING_EVENTS.include?(billing_event)
       raise Exception, "Bid strategy must be one of: #{AdSet::BID_STRATEGIES.join(', ')}" unless AdSet::BID_STRATEGIES.include?(bid_strategy)
@@ -84,7 +84,7 @@ module FacebookAds
       }
 
       if daily_budget && lifetime_budget
-        raise Exception 'Only one budget may be set between daily_budget and life_budget'
+        raise Exception "Only one budget may be set between daily_budget and life_budget"
       elsif daily_budget
         query[:daily_budget] = daily_budget
       elsif lifetime_budget
