@@ -4,8 +4,8 @@ module FacebookAds
   # Ad ad creative has many ad images and belongs to an ad account.
   # https://developers.facebook.com/docs/marketing-api/reference/ad-creative
   class AdCreative < Base
-    FIELDS               = %w[id name object_story_id object_story_spec object_type thumbnail_url status].freeze
-    CALL_TO_ACTION_TYPES = %w[SHOP_NOW INSTALL_MOBILE_APP USE_MOBILE_APP SIGN_UP DOWNLOAD BUY_NOW NO_BUTTON].freeze
+    FIELDS               = %w[id name object_story_id object_story_spec object_type thumbnail_url].freeze
+    CALL_TO_ACTION_TYPES = %w[SHOP_NOW INSTALL_MOBILE_APP USE_MOBILE_APP SIGN_UP DOWNLOAD BUY_NOW].freeze
 
     class << self
       def photo(name:, page_id:, instagram_actor_id: nil, message:, link:, app_link: nil, link_title:, image_hash:, call_to_action_type:, link_description: nil)
