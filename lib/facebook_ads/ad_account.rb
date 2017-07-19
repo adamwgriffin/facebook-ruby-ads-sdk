@@ -162,6 +162,28 @@ module FacebookAds
         targeting_spec: targeting.to_json,
         optimization_goal: optimization_goal,
         currency: currency
+              }
+      self.class.get("/#{id}/delivery_estimate", query: query, objectify: false)
+    end
+
+    # has_many applications
+
+    def applications
+      self.class.get("/#{id}/advertisable_applications", objectify: false)
+    end
+
+      if targeting.is_a?(AdTargeting)
+        if targeting.validate!
+          targeting = targeting.to_hash
+        else
+          raise Exception, 'The provided targeting spec is not valid.'
+        end
+      end
+
+      query = {
+        targeting_spec: targeting.to_json,
+        optimization_goal: optimization_goal,
+        currency: currency
       }
 
       self.class.get("/#{id}/delivery_estimate", query: query, objectify: false)
