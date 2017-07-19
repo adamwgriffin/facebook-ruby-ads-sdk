@@ -31,7 +31,7 @@ module FacebookAds
   end
 
   def self.base_uri
-    @base_uri = "https://graph.facebook.com/v#{api_version}" unless defined?(@base_uri)
+    @base_uri = 'https://graph.facebook.com/v2.9' unless defined?(@base_uri)
     @base_uri
   end
 
