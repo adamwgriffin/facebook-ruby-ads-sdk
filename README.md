@@ -230,9 +230,9 @@ image_ad_creative = account.create_ad_creative({
 Create a single creative for a web link:
 ```ruby
 image_ad_creative = account.create_ad_creative({
-  title: 'Test Link Title',
-  body: 'Link Description Text',
-  object_url: 'www.example.com/my-ad-link',
+  title: 'Test Link Title', 
+  body: 'Link Description Text', 
+  object_url: 'www.example.com/my-ad-link', 
   link_url: 'www.example.com/my-ad-link',
   image_hash: ad_images.first.hash,
 }, creative_type: 'link')
@@ -313,7 +313,7 @@ ad_set = campaign.create_ad_set(
   daily_budget: 500, # This is in cents, so the daily budget here is $5.
   billing_event: 'IMPRESSIONS',
   status: 'PAUSED',
-  bid_strategy: 'LOWEST_COST_WITHOUT_CAP'
+  is_autobid: true
 )
 ```
 See FacebookAds::AdSet::OPTIMIZATION_GOALS for a list of all optimization goals.
