@@ -194,6 +194,18 @@ module FacebookAds
       self.class.get("/#{id}/delivery_estimate", query: query, objectify: false)
     end
 
+    def create_ad_audience_with_crm_data(name:, subtype: 'CUSTOM', description:, schema:, data:)
+      query = {
+        name: name,
+        subtype: subtype,
+        description: description
+      }
+
+      result = AdAudience.post("/#{id}/customaudiences", query: query)
+      audience = AdAudience.find(result['id'])
+      audience.add_crm_users(schema: schema, data: data)
+    end
+
     private
 
     def create_carousel_ad_creative(creative)

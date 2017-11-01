@@ -18,9 +18,20 @@ module FacebookAds
         share_with_object_id: account_id,
         share_with_object_type: 'Account'
       }
-      result = AdAccount.post("/#{id}/share_with_objects", query: query)
+      result = self.class.post("/#{id}/share_with_objects", query: query)
       # result['success']
       result # No idea what this response looks like.
+    end
+
+    def add_crm_users(schema:, data:)
+      query = {
+        payload: {
+          schema: schema,
+          data: data
+        }
+      }
+      result = self.class.post("/#{id}/users", query: query)
+      result
     end
   end
 end
