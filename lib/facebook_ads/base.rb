@@ -156,7 +156,7 @@ module FacebookAds
           response.inspect
         end
 
-        exception.message += " - #{message}"
+        exception.message += " - #{message}" if exception.respond_to?(:message=)
         FacebookAds.logger.error "#{verb.upcase} #{path} #{message}"
         raise exception
       end
