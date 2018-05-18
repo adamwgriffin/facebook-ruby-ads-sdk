@@ -313,7 +313,7 @@ ad_set = campaign.create_ad_set(
   daily_budget: 500, # This is in cents, so the daily budget here is $5.
   billing_event: 'IMPRESSIONS',
   status: 'PAUSED',
-  is_autobid: true
+  bid_strategy: 'LOWEST_COST_WITHOUT_CAP'
 )
 ```
 See FacebookAds::AdSet::OPTIMIZATION_GOALS for a list of all optimization goals.

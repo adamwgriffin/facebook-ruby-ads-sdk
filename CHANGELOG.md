@@ -1,17 +1,5 @@
-## 0.6.6 (2018-11-29)
-  - Added ability to pass date range when fetching `ad_set_activities`.
-
-## 0.6.5 (2018-11-26)
-  - Expose `ad_set_activities` for `ad_sets`.
-
-## 0.6.4 (2018-10-03)
-  - Expose `budget_remaining`, `daily_budget`, `lifetime_budget` for Ad Campaigns. These are needed when we have budgets at the Ad Campaign level and not at the Ad Set level.
-
-## 0.6.3 (2018-05-17)
-  - Replaced deprecated `is_autobid` with new `bid_strategy` field
-
-## 0.6.2 (2018-05-08)
-  - Set Product Catalog path to `/owned_product_catalogs` for API v2.11 compatibility
+## 0.6 (2018-05-17)
+- Replaced deprecated `is_autobid` with new `bid_strategy` field
 
 ## 0.4 (2017-07-25)
  - Added ability to pass `bid_amount` parameter when creating ad sets
